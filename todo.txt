@@ -1,0 +1,10 @@
+
+Tatsächliche Icon-Dateien (im Repo fehlen icons/icon-192.png & icon-512.png).
+
+
+Navigation-Routing im Service Worker (SPA / HTML-Fallback).
+Update-Handling (neuer SW -> Hinweis / Reload).
+Optional: Apple Meta-Tags (iOS Install/Statusbar), maskierbare Icons.
+HTTPS (oder localhost) für Kamera & Service Worker.
+Ggf. Separates Caching nur für eigene Ressourcen (externe Skripte können Version ändern; alternativ lokal hosten).
+Performance: Begrenzung Runtime-Cache / stale-while-revalidate bei Bedarf.
