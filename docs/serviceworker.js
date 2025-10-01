@@ -4,6 +4,7 @@ const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const RUNTIME_MAX_ENTRIES = 40;
 
 const PRECACHE_URLS = [
+  // Liste der Dateien, die beim Installieren vorab in den Cache gelegt werden
   './',
   './index.html',
   './manifest.json',
@@ -24,42 +25,45 @@ const PRECACHE_URLS = [
 ];
 
 self.addEventListener('install', event => {
+  // Installationsphase: legt statische Assets in den Cache und aktiviert sofort
   event.waitUntil(
     caches.open(STATIC_CACHE).then(cache => cache.addAll(PRECACHE_URLS))
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Neue Version sofort aktivieren
 });
 
 self.addEventListener('activate', event => {
+  // Aktivierungsphase: entfernt veraltete Cache-Versionen und übernimmt Clients
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys.filter(k => ![STATIC_CACHE, RUNTIME_CACHE].includes(k))
-          .map(k => caches.delete(k))
+        keys.filter(k => ![STATIC_CACHE, RUNTIME_CACHE].includes(k)) // Fremde Cache-Namen ignorieren
+          .map(k => caches.delete(k)) // Alte Caches aufräumen
       )
     )
   );
-  self.clients.claim();
+  self.clients.claim(); // Kontrolle über offene Tabs übernehmen
 });
 
 self.addEventListener('fetch', event => {
+  // Hauptroutine für jede Netzwerkanfrage aus der PWA
   const req = event.request;
 
-  if (req.method !== 'GET') return;
+  if (req.method !== 'GET') return; // Schreibende Requests nicht cachen
 
   const accept = req.headers.get('accept') || '';
   const isHTML = req.mode === 'navigate' || accept.includes('text/html');
 
-  if (isHTML) {
+  if (isHTML) { // Navigationsanforderungen bevorzugt aus dem Netz holen
     event.respondWith(
       fetch(req)
         .then(res => {
           const clone = res.clone();
-          caches.open(RUNTIME_CACHE).then(cache => cache.put(req, clone));
+          caches.open(RUNTIME_CACHE).then(cache => cache.put(req, clone)); // Antwort für spätere Nutzung sichern
           return res;
         })
         .catch(() =>
-          caches.match(req).then(match => match || caches.match('./offline.html'))
+          caches.match(req).then(match => match || caches.match('./offline.html')) // Fallback auf Offline-Seite
         )
     );
     return;
@@ -68,7 +72,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   const rel = relativePath(url);
 
-  if (PRECACHE_URLS.includes(rel) || PRECACHE_URLS.includes(req.url)) {
+  if (PRECACHE_URLS.includes(rel) || PRECACHE_URLS.includes(req.url)) { // Bekannte Assets direkt aus dem Static-Cache bedienen
     event.respondWith(
       caches.match(req).then(cached => cached || fetch(req))
     );
@@ -82,43 +86,46 @@ self.addEventListener('fetch', event => {
           const clone = res.clone();
           caches.open(RUNTIME_CACHE).then(cache => {
             cache.put(req, clone);
-            trimCache(RUNTIME_CACHE, RUNTIME_MAX_ENTRIES);
+            trimCache(RUNTIME_CACHE, RUNTIME_MAX_ENTRIES); // Laufzeit-Cache auf Limit halten
           });
           return res;
         })
-        .catch(() => cached);
+        .catch(() => cached); // Bei Netzfehler auf vorhandenen Cache zurückfallen
 
-      if (cached) {
+      if (cached) { // Stale-while-revalidate: Cache liefern, Netzwerk im Hintergrund
         event.waitUntil(fetchPromise);
         return cached;
       }
 
-      return fetchPromise;
+      return fetchPromise; // Kein Cache-Hit: Ergebnis der Netzwerkanfrage liefern
     })
   );
 });
 
 function relativePath(url) {
-  if (self.location.origin === url.origin) {
+  // Erzeugt einen relativen Pfad für gleiche Herkunft, sonst komplette URL
+  if (self.location.origin === url.origin) { // Nur interne Pfade relativieren
     let p = url.pathname;
-    if (p.endsWith('/')) return './';
-    if (p.startsWith('/')) p = '.' + p;
+    if (p.endsWith('/')) return './'; // Root-Ordner abdecken
+    if (p.startsWith('/')) p = '.' + p; // Voranstellen für relative Referenzen
     return p;
   }
-  return url.href;
+  return url.href; // Externe Ressourcen unverändert lassen
 }
 
 function trimCache(cacheName, maxEntries) {
+  // Hilfsroutine zum Begrenzen der Cache-Größe durch Entfernen ältester Einträge
   caches.open(cacheName).then(cache =>
     cache.keys().then(keys => {
-      if (keys.length <= maxEntries) return;
-      cache.delete(keys[0]).then(() => trimCache(cacheName, maxEntries));
+      if (keys.length <= maxEntries) return; // Grenzen eingehalten: nichts tun
+      cache.delete(keys[0]).then(() => trimCache(cacheName, maxEntries)); // Rekursiv älteste Einträge entfernen
     })
   );
 }
 
 self.addEventListener('message', event => {
+  // Reagiert auf Steuerbefehle (z. B. SKIP_WAITING) aus dem Client
   if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+    self.skipWaiting(); // Manuelles Upgrade auslösen
   }
 });
