@@ -20,6 +20,8 @@ const PRECACHE_URLS = [
   './trex/trex-image/trex.fset',
   './trex/trex-image/trex.fset3',
   './trex/trex-image/trex.iset',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
   'https://aframe.io/releases/1.6.0/aframe.min.js',
   'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
 ];
@@ -128,4 +130,27 @@ self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting(); // Manuelles Upgrade auslösen
   }
+});
+
+self.addEventListener('push', event => { // Empfang von Push-Nachrichten
+  const data = event.data?.json() ?? { title: 'T-Rex AR', body: 'Der Dino ist live!' };
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: './icons/icon-192.png',
+      data: data.url ?? './'
+    })
+  );
+});
+
+self.addEventListener('notificationclick', event => { // Reaktion auf Klicks in Benachrichtigungen
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientsArr => {
+      const target = event.notification.data;
+      const existing = clientsArr.find(c => c.url === target && 'focus' in c);
+      if (existing) return existing.focus();
+      if (clients.openWindow && target) return clients.openWindow(target);
+    })
+  );
 });
