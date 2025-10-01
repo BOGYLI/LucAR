@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const RUNTIME_MAX_ENTRIES = 40;
@@ -53,54 +53,9 @@ self.addEventListener('fetch', event => {
 
   if (req.method !== 'GET') return; // Schreibende Requests nicht cachen
 
-  const accept = req.headers.get('accept') || '';
-  const isHTML = req.mode === 'navigate' || accept.includes('text/html');
-
-  if (isHTML) { // Navigationsanforderungen bevorzugt aus dem Netz holen
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const clone = res.clone();
-          caches.open(RUNTIME_CACHE).then(cache => cache.put(req, clone)); // Antwort für spätere Nutzung sichern
-          return res;
-        })
-        .catch(() =>
-          caches.match(req).then(match => match || caches.match('./offline.html')) // Fallback auf Offline-Seite
-        )
-    );
-    return;
-  }
-
-  const url = new URL(req.url);
-  const rel = relativePath(url);
-
-  if (PRECACHE_URLS.includes(rel) || PRECACHE_URLS.includes(req.url)) { // Bekannte Assets direkt aus dem Static-Cache bedienen
-    event.respondWith(
-      caches.match(req).then(cached => cached || fetch(req))
-    );
-    return;
-  }
-
   event.respondWith(
-    caches.match(req).then(cached => {
-      const fetchPromise = fetch(req)
-        .then(res => {
-          const clone = res.clone();
-          caches.open(RUNTIME_CACHE).then(cache => {
-            cache.put(req, clone);
-            trimCache(RUNTIME_CACHE, RUNTIME_MAX_ENTRIES); // Laufzeit-Cache auf Limit halten
-          });
-          return res;
-        })
-        .catch(() => cached); // Bei Netzfehler auf vorhandenen Cache zurückfallen
-
-      if (cached) { // Stale-while-revalidate: Cache liefern, Netzwerk im Hintergrund
-        event.waitUntil(fetchPromise);
-        return cached;
-      }
-
-      return fetchPromise; // Kein Cache-Hit: Ergebnis der Netzwerkanfrage liefern
-    })
+    fetch(req, { cache: 'reload' })
+      .catch(() => caches.match(req) || caches.match('./offline.html'))
   );
 });
 
