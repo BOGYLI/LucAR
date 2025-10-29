@@ -6,9 +6,8 @@
 <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js'></script>
     <body style="margin : 0px; overflow: hidden;">
             <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-            <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 25 alert:true gpsTimeInterval:10' ></a-camera>
-         <a-entity gltf-model="WendigoAR.gltf" gps-new-entity-place="latitude: 47.557944; longitude: 9.6973631" scale="0.2 0.2 0.2" position="15 0 0"></a-entity>
-         <a-entity gltf-model="result.gltf" gps-new-entity-place="latitude: 47.5578001; longitude: 9.697065" scale="0.4 0.4 0.4" position="0 0 0"></a-entity>
+            <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 25 alert:true' ></a-camera>
+         <a-entity gltf-model="result.gltf" gps-new-entity-place="latitude: 47.557944; longitude: 9.6973631" scale="0.2 0.2 0.2" position="5 0 0"></a-entity>
         <a-entity camera></a-entity>
         </a-scene>
     </body>
