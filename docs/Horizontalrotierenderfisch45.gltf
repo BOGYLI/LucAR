@@ -1,0 +1,318 @@
+{
+  "asset": {
+    "generator": "glTF-Transform v4.2.1",
+    "version": "2.0"
+  },
+  "accessors": [
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 3968,
+      "max": [
+        1.2639048099517822,
+        3.031064033508301,
+        4.633213996887207
+      ],
+      "min": [
+        -1.225830078125,
+        -2.5258734226226807,
+        -5.8403096199035645
+      ],
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 3968,
+      "bufferView": 0,
+      "byteOffset": 12
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5126,
+      "count": 3968,
+      "bufferView": 0,
+      "byteOffset": 24
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5121,
+      "count": 3968,
+      "bufferView": 0,
+      "byteOffset": 32
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5126,
+      "count": 3968,
+      "bufferView": 0,
+      "byteOffset": 36
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5123,
+      "count": 5760,
+      "bufferView": 1,
+      "byteOffset": 0
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5123,
+      "count": 2880,
+      "bufferView": 1,
+      "byteOffset": 11520
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 1984,
+      "max": [
+        -0.21153634786605835,
+        0.49023061990737915,
+        3.7836997509002686
+      ],
+      "min": [
+        -0.5492262840270996,
+        0.15254049003124237,
+        3.446009635925293
+      ],
+      "bufferView": 2,
+      "byteOffset": 0
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 1984,
+      "bufferView": 2,
+      "byteOffset": 12
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5126,
+      "count": 1984,
+      "bufferView": 2,
+      "byteOffset": 24
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5121,
+      "count": 1984,
+      "bufferView": 2,
+      "byteOffset": 32
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5126,
+      "count": 1984,
+      "bufferView": 2,
+      "byteOffset": 36
+    },
+    {
+      "type": "MAT4",
+      "componentType": 5126,
+      "count": 3,
+      "bufferView": 3,
+      "byteOffset": 0
+    },
+    {
+      "type": "MAT4",
+      "componentType": 5126,
+      "count": 3,
+      "bufferView": 3,
+      "byteOffset": 192
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 206336,
+      "byteStride": 52,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 206336,
+      "byteLength": 17280,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 223616,
+      "byteLength": 103168,
+      "byteStride": 52,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 326784,
+      "byteLength": 384
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "buffer.bin",
+      "byteLength": 327168
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {}
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2,
+            "JOINTS_0": 3,
+            "WEIGHTS_0": 4
+          },
+          "mode": 4,
+          "material": 0,
+          "indices": 5
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 7,
+            "NORMAL": 8,
+            "TEXCOORD_0": 9,
+            "JOINTS_0": 10,
+            "WEIGHTS_0": 11
+          },
+          "mode": 4,
+          "material": 0,
+          "indices": 6
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Scene",
+      "children": [
+        1
+      ]
+    },
+    {
+      "name": "Armature",
+      "extras": {
+        "name": "Armature"
+      },
+      "rotation": [
+        -0.6808620125871382,
+        0,
+        0,
+        0.7324117146904408
+      ],
+      "children": [
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "Sphere",
+      "extras": {
+        "name": "Sphere"
+      },
+      "mesh": 0,
+      "skin": 0
+    },
+    {
+      "name": "Sphere001",
+      "extras": {
+        "name": "Sphere.001"
+      },
+      "mesh": 1,
+      "skin": 1
+    },
+    {
+      "name": "Bone",
+      "extras": {
+        "name": "Bone"
+      },
+      "translation": [
+        -0.02545877732336521,
+        -0.0783589705824852,
+        0.10171157121658325
+      ],
+      "rotation": [
+        -0.061653340494336406,
+        1.1898253106779112e-7,
+        -7.3496571398863674e-9,
+        0.9980976232843535
+      ],
+      "children": [
+        5
+      ]
+    },
+    {
+      "name": "Bone001",
+      "extras": {
+        "name": "Bone.001"
+      },
+      "translation": [
+        2.4480701910079006e-9,
+        1.0000001192092896,
+        5.106024048018298e-9
+      ],
+      "rotation": [
+        0.2851205235894634,
+        0.668094758047369,
+        0.6037623353012128,
+        0.328369800841756
+      ]
+    },
+    {
+      "name": "neutral_bone",
+      "extras": {
+        "name": "neutral_bone"
+      },
+      "rotation": [
+        -0.70710676908493,
+        0,
+        0,
+        0.7071067932881648
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "inverseBindMatrices": 12,
+      "skeleton": 4,
+      "joints": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "inverseBindMatrices": 13,
+      "skeleton": 4,
+      "joints": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "name": "AuxScene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "scene": 0
+}
