@@ -1,25 +1,13 @@
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const RUNTIME_MAX_ENTRIES = 40;
 
 const PRECACHE_URLS = [
-  // Liste der Dateien, die beim Installieren vorab in den Cache gelegt werden
   './',
   './index.html',
   './manifest.json',
   './offline.html',
-  './trex/scene.gltf',
-  './trex/scene.bin',
-  './trex/textures/Material_21_baseColor.png',
-  './trex/textures/Material_21_normal.png',
-  './trex/textures/Material_22_baseColor.png',
-  './trex/textures/Material_22_normal.png',
-  './trex/textures/Scene_-_Root_diffuse.jpeg',
-  './trex/textures/Scene_-_Root_normal.png',
-  './trex/trex-image/trex.fset',
-  './trex/trex-image/trex.fset3',
-  './trex/trex-image/trex.iset',
   './icons/icon-192.png',
   './icons/icon-512.png',
   'https://aframe.io/releases/1.6.0/aframe.min.js',
@@ -87,8 +75,8 @@ self.addEventListener('message', event => {
   }
 });
 
-self.addEventListener('push', event => { // Empfang von Push-Nachrichten
-  const data = event.data?.json() ?? { title: 'T-Rex AR', body: 'Der Dino ist live!' };
+self.addEventListener('push', event => {
+  const data = event.data?.json() ?? { title: 'AR Entdecker', body: 'Neue Entdeckung wartet auf dich!' };
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body,

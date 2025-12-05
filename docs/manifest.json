@@ -1,36 +1,27 @@
 {
-  "name": "AR Dino Demo",
-  "short_name": "ARDino",
+  "name": "AR Entdecker App",
+  "short_name": "AR Entdecker",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "orientation": "portrait",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "description": "Eine AR-Anwendung für Entdeckungstouren",
   "icons": [
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-    ]
-    ,
-    "apple": {
-      "touch_icons": [
-        {
-          "src": "icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        },
-        {
-          "src": "icons/icon-512.png",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
-      ]
-    }
+  ],
+  "categories": ["education", "entertainment"],
+  "prefer_related_applications": false
 }
