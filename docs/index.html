@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -23,14 +27,14 @@
 
 <body>
     <!-- Landing Page -->
-    <div id="landing" class="screen active">
+    <!-- <div id="landing" class="screen active">
         <h1>AR Entdecker</h1>
         <p>Begib dich auf eine spannende Entdeckungsreise durch Lindau!</p>
-        <button class="cta-button" onclick="startApp()">Abenteuer starten</button>
-    </div>
+        <button class="cta-button" onclick="startApp()" ontouchend="startApp()" >Abenteuer starten</button>
+    </div> -->
 
     <!-- Screen A: Navigation Instructions -->
-    <div id="screen-a" class="screen">
+    <!-- <div id="screen-a" class="screen">
         <div class="instruction-box">
             <h2>📍 Nächstes Ziel</h2>
             <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
@@ -41,28 +45,37 @@
             <div class="map-placeholder" id="map-placeholder">🗺️ Karte wird geladen...</div>
         </div>
         <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
-    </div>
+    </div> -->
 
     <!-- Screen B: Arrival Confirmation -->
-    <div id="screen-b" class="screen">
+    <!-- <div id="screen-b" class="screen">
         <div class="modal-content">
             <div class="success-icon">✅</div>
             <h2>Perfekt!</h2>
             <p>Du bist am Ziel angekommen. Bereit für die AR-Erfahrung?</p>
             <button class="action-button" onclick="startAR()">Weiter zur AR-Ansicht</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Screen C: AR View -->
     <div id="screen-c" class="screen">
         <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
             renderer='antialias: true; alpha: true'>
+
+            <a-assets>
+                <img id="button" src="icons/Youtube_play_button_icon(2013-2017).png">
+                </a-assets>
+
             <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 100 alert:true'></a-camera>
-            <a-entity gltf-model="models/Horizontalrotierenderfisch49.glb" animation-mixer
+            <a-entity id="fih1" gltf-model="models/Horizontalrotierenderfisch49.glb" animation-mixer
                 gps-new-entity-place="latitude: 47.557944; longitude: 9.6973631" scale="0.2 0.2 0.2"
                 position="0 0 0"></a-entity>
             <a-entity camera></a-entity>
+            <a-image id="button_click" button1 src="#button" height="1" width="1" position="0 -1.6 -7"></a-image>
+
+
         </a-scene>
+        
         <button class="ar-button" onclick="nextLocation()">➜</button>
     </div>
 
@@ -75,6 +88,24 @@
     </div>
 
     <script>
+        
+        
+        AFRAME.registerComponent('button1', {
+        init:function() {
+        var fih = document.querySelector("#fih1");
+        this.el.addEventListener('click', () => {
+        fih.setAttribute('visible',true);
+        //pln.setAttribute("position",{x:0,y:5,z:-9});
+        fih.setAttribute('animation', 'property: position; dur: 1000; from: 0 0 0; to: 0 5 -18');
+        });
+        }
+        });
+        
+        
+        
+        
+        
+        
         // PWA Installation
         let deferredPrompt;
 
