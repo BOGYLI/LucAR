@@ -73,6 +73,13 @@ body {
     box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
 }
 
+/* Ensure HTML CTA buttons sit above any AR/canvas layers */
+.cta-button {
+    position: relative;
+    z-index: 2000;
+    pointer-events: auto;
+}
+
 .install-button {
     position: fixed;
     top: 20px;
