@@ -40,37 +40,43 @@ body {
 }
 
 #landing h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    margin-top: 30px;
     margin-bottom: 1rem;
-    color: #0f3460;
+    color: #fcbe14;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-
+ #landing img {
+    border-radius: 50px;
+    height: 35%;
+    margin-bottom: 20px;
+ }
 #landing p {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: #e94560;
+    color: #45a8fa;
     max-width: 80%;
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
-    color: white;
+    background: linear-gradient(135deg, #fcbe14 0%, #f7b70a 100%);
+    color: #5f2b00cb;
     border: none;
     padding: 18px 40px;
     font-size: 1.2rem;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+    box-shadow: 0 10px 30px #45a8fa63(233, 69, 96, 0.4);
     transition: all 0.3s ease;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top:20px;
+    margin-bottom: 20px;
 }
 
 .cta-button:hover, .cta-button:active {
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
+    box-shadow: 0 15px 40px #ad4e00cb;
 }
 
 /* Ensure HTML CTA buttons sit above any AR/canvas layers */
