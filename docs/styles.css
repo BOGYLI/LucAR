@@ -33,6 +33,12 @@ body {
     display: flex;
 }
 
+p
+{
+color: #45a8fa;
+}
+
+
 /* Landing Page */
 #landing {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -53,12 +59,11 @@ body {
  }
 #landing p {
     font-size: 1.1rem;
-    color: #45a8fa;
     max-width: 80%;
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #fcbe14 0%, #f7b70a 100%);
+    background: linear-gradient(135deg, #fcbe14 0%, #ffbc05 100%);
     color: #5f2b00cb;
     border: none;
     padding: 18px 40px;
@@ -120,7 +125,7 @@ body {
 }
 
 .instruction-box h2 {
-    color: #e94560;
+    color: #ffbc05;
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
@@ -156,21 +161,21 @@ body {
 
 .action-button {
     margin-top: 30px;
-    background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
-    color: white;
+    background: linear-gradient(135deg, #fcbe14 0%, #ffbc05 100%);
+    color: #5f2b00cb;
     border: none;
     padding: 15px 35px;
     font-size: 1.1rem;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+    box-shadow: 0 10px 30px #0045a000;
     transition: all 0.3s ease;
     font-weight: bold;
 }
 
 .action-button:hover, .action-button:active {
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
+    box-shadow: 0 15px 40px #ad4e00;
 }
 
 /* Screen B - Modal */
@@ -190,7 +195,7 @@ body {
 
 .modal-content h2 {
     font-size: 2rem;
-    color: #e94560;
+    color: #ffbc05;
     margin-bottom: 20px;
 }
 
@@ -222,12 +227,12 @@ body {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
+    background: linear-gradient(135deg, #fcbe14 0%, #ffbc05 100%);
     border: none;
-    color: white;
+    color: #5f2b00cb;
     font-size: 2rem;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.6);
+    box-shadow: 0 10px 30px #5f2b00cb;;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -237,7 +242,11 @@ body {
 
 .ar-button:hover, .ar-button:active {
     transform: scale(1.1);
-    box-shadow: 0 15px 40px rgba(233, 69, 96, 0.8);
+    box-shadow: 0 15px 40px #5f2b00cb;
+}
+
+.a-enter-vr-button:hover {
+    background-color: #45a8fa;
 }
 
 /* Update Banner */
@@ -257,7 +266,7 @@ body {
 
 #sw-reload {
     margin-left: 0.5rem;
-    background: #e94560;
+    background: #45a8fa;
     color: white;
     border: none;
     padding: 5px 15px;
