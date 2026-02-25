@@ -1,5 +1,6 @@
 {
     "livePreview.defaultPreviewPath": "/docs/index.html",
     "python-envs.defaultEnvManager": "ms-python.python:system",
-    "python-envs.pythonProjects": []
+    "python-envs.pythonProjects": [],
+    "liveServer.settings.port": 5502
 }

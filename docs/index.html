@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="de">
 
@@ -33,7 +30,7 @@
         <button class="cta-button" onclick="startApp()" ontouchend="startApp()" >Abenteuer starten</button>
     </div>
 
-    <!-- Screen A: Navigation Instructions -->
+    <!-- Screen A: Navigation Instructions Fisch -->
     <div id="screen-a" class="screen">
         <div class="instruction-box">
             <h2>📍 Nächstes Ziel</h2>
@@ -57,26 +54,97 @@
         </div>
     </div>
 
-    <!-- Screen C: AR View -->
+    <!-- Screen C: AR View Fisch -->
     <div id="screen-c" class="screen">
         <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
             renderer='antialias: true; alpha: true'>
 
             <a-assets>
-                <img id="button" src="icons/Youtube_play_button_icon(2013-2017).png">
+                <!-- <img id="button" src="icons/Youtube_play_button_icon(2013-2017).png"> -->
                 </a-assets>
 
-            <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 100 alert:true'></a-camera>
-            <a-entity id="fih1" gltf-model="models/Horizontalrotierenderfisch49.glb" animation-mixer
-                gps-new-entity-place="latitude: 47.557944; longitude: 9.6973631" scale="0.2 0.2 0.2"
-                position="0 0 0"></a-entity>
-            <a-entity camera></a-entity>
-            <a-image id="button_click" button1 src="#button" height="1" width="1" position="0 -1.6 -7"></a-image>
+            <!-- <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
+            <a-entity id="fih1" gltf-model="models/Fisch.glb" animation-mixer
+                position="10 0 10"></a-entity>
+            <!-- <a-entity camera ></a-entity> -->
 
 
         </a-scene>
         
-        <button class="ar-button" onclick="nextLocation()">➜</button>
+        <button class="ar-button" onclick="nextLocationFisch()">➜</button>
+    </div>
+
+
+    <!-- Screen D: Navigation Instructions Löwe -->
+    <div id="screen-d" class="screen">
+        <div class="instruction-box">
+            <h2>📍 Nächstes Ziel</h2>
+            <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
+                Überraschung!</p>
+        </div>
+        <div class="map-container">
+            <img id="map-image" src="" alt="Karte" style="display:none;">
+            <div class="map-placeholder" id="map-placeholder">🗺️ Karte wird geladen...</div>
+        </div>
+        <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
+    </div>
+
+
+
+    <!-- Screen E: AR View Löwe -->
+    <div id="screen-f" class="screen">
+        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
+            renderer='antialias: true; alpha: true'>
+
+            <a-assets>
+                </a-assets>
+
+            <!-- <a-camera gps-projected-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
+            <a-entity id="fih1" gltf-model="models/Löwe.glb" animation-mixer
+                
+                position="10 0 0"></a-entity>
+            <!-- <a-entity camera ></a-entity> -->
+
+
+        </a-scene>
+        
+        <button class="ar-button" onclick="nextLocationLöwe()">➜</button>
+    </div>
+
+    <!-- Screen F: Navigation Instructions Eule -->
+    <div id="screen-g" class="screen">
+        <div class="instruction-box">
+            <h2>📍 Nächstes Ziel</h2>
+            <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
+                Überraschung!</p>
+        </div>
+        <div class="map-container">
+            <img id="map-image" src="" alt="Karte" style="display:none;">
+            <div class="map-placeholder" id="map-placeholder">🗺️ Karte wird geladen...</div>
+        </div>
+        <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
+    </div>
+
+
+
+    <!-- Screen G: AR View Eule -->
+    <div id="screen-i" class="screen">
+        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
+            renderer='antialias: true; alpha: true'>
+
+            <a-assets>
+                </a-assets>
+
+            <!-- <a-camera gps-projected-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
+            <a-entity id="fih1" gltf-model="models/Fisch.glb" animation-mixer
+                
+                position="10 0 0"></a-entity>
+            <!-- <a-entity camera ></a-entity> -->
+
+
+        </a-scene>
+        
+        <button class="ar-button" onclick="nextLocationEule()">➜</button>
     </div>
 
     <!-- Install Button -->
@@ -88,20 +156,6 @@
     </div>
 
     <script>
-        
-        
-        AFRAME.registerComponent('button1', {
-        init:function() {
-        var fih = document.querySelector("#fih1");
-        this.el.addEventListener('click', () => {
-        fih.setAttribute('visible',true);
-        //pln.setAttribute("position",{x:0,y:5,z:-9});
-        fih.setAttribute('animation', 'property: position; dur: 1000; from: 0 0 0; to: 0 5 -18');
-        });
-        }
-        });
-        
-        
         
         
         
@@ -140,14 +194,50 @@
             showScreen('screen-b');
         }
 
-        function startAR() {
-            showScreen('screen-c');
+        i =0;
+        function startAR() 
+        {
+            
+            i=i+1;
+            switch (i)
+            {
+                case 1 : showScreen('screen-c')
+                break;
+                case 2 : showScreen('screen-f')
+                break;
+                case 3 : showScreen('screen-i')
+                break;
+            }
+            
+            
+            
+            
+        }
+        
+        function nextLocationFisch() {
+            // Hier könnten verschiedene Locations rotiert werden
+            showScreen('screen-d');
         }
 
-        function nextLocation() {
+
+
+        function nextLocationLöwe() {
             // Hier könnten verschiedene Locations rotiert werden
-            showScreen('screen-a');
+            showScreen('screen-g');
         }
+
+        
+        function nextLocationEule() {
+            // Hier könnten verschiedene Locations rotiert werden
+            showScreen('screen-j');
+        }
+
+
+        function startARMaus() {
+            showScreen('screen-l');
+        }
+
+        
 
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
