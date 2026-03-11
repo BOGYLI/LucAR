@@ -1,1 +1,1 @@
-# psem-ar
+# LucAR P-Seminar
