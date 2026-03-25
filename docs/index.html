@@ -23,12 +23,18 @@
 
 <body>
     <!-- Landing Page -->
+    <div class="video-background">
+        <video id="landing-video" preload="none" autoplay muted loop playsinline>
+            <source src="img/landingpaige_gvroh.mp4" type="video/mp4">
+            Dein Browser unterstützt HTML5 Video nicht.
+        </video>
+    </div>
     <div id="landing" class="screen active">
          <h1>Luc<span style="color:#ad4e00;">AR</span></h1>
         <img src="icons/appicon.jpg">
         <p>Hilf Luca seine Sachen wieder zu finden und begib dich auf eine Reise in die historische Geschichte Lindaus</p>
         <button class="cta-button" onclick="startApp()">Abenteuer starten</button>
-        <p>Dieses Project ist im Rahmen des P-Seminars der 11 Klasse am Bodensee Gymnasium entstanden. Viele Schüler*innen haben wärend der Entwiklungszeit ihr Wissen erweitert oder ganz vom Neuem sich Sachen beigebracht und ausprobiert</p>
+        <p>Dieses Project ist im Rahmen des P-Seminars der 11 Klasse am Bodensee Gymnasium entstanden</p>
     </div>
 
     <!-- Screen A: Navigation Instructions -->
@@ -47,6 +53,10 @@
 
     <!-- Screen B: Arrival Confirmation -->
     <div id="screen-b" class="screen">
+        <div id="daumenloewe">
+            <img id="loewenkopf" src="img/Löwenkopf.png" alt="">
+            <img id="daumen" src="img/Daumen.png" alt="">
+        </div>
         <div class="modal-content">
             <h2>Perfekt!</h2>
             <p>Du bist am Ziel angekommen. Bereit für die AR-Erfahrung?</p>
