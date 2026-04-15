@@ -34,10 +34,9 @@
         </div>
         <h1>Luc<span style="color:#ad4e00;">AR</span></h1>
         <img src="icons/appicon.jpg">
-        <p>Hilf Luca seine Sachen wieder zu finden und begib dich auf eine Reise in die historische Geschichte Lindaus
-        </p>
+        <p>Hilf Luca seine Sachen wieder zu finden und begib dich auf eine Reise in die historische Geschichte Lindaus!</p>
         <button class="cta-button" onclick="startApp()">Abenteuer starten</button>
-        <p>Dieses Project ist im Rahmen des P-Seminars der 11 Klasse am Bodensee Gymnasium entstanden</p>
+        <p>Dieses Projekt ist im Rahmen des P-Seminars der 11. Klasse am Bodensee-Gymnasium entstanden. Viele Schüler*innen haben während der Entwicklungszeit ihr Wissen erweitert oder viel Neues gelernt und ausprobiert!</p>
     </div>
 
     <!-- Screen A: Navigation Instructions Fisch -->
@@ -67,23 +66,27 @@
         </div>
     </div>
 
-    <!-- Screen C: AR View Fisch -->
+    <!-- Screen C: AR View -->
     <div id="screen-c" class="screen">
         <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
             renderer='antialias: true; alpha: true'>
 
-            <a-assets>
-                <!-- <img id="button" src="icons/Youtube_play_button_icon(2013-2017).png"> -->
-            </a-assets>
 
             <!-- <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
-            <a-entity id="fih1" gltf-model="models/Fisch.glb" animation-mixer position="10 0 10"></a-entity>
-            <!-- <a-entity camera ></a-entity> -->
+            <a-entity id="fisch" gltf-model="models/Fisch.glb" animation-mixer 
+                position="0 0 -10" rotation="0 -15 0"  ></a-entity>
+            <a-entity gps-entity-place="latitude: 47.557944; longitude: 9.6974031" id="gps-container"></a-entity>
+            <a-entity id="löwe" gltf-model="models/Löwe.glb" animation-mixer
+                position="0 0 -10" scale="2 2 2" rotation="0 0 0"  ></a-entity>
+            <a-entity id="eule" gltf-model="models/GartenEule.glb" animation-mixer
+                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 170 0" ></a-entity> 
+            <a-entity id="möwe" gltf-model="models/Möwe.glb" animation-mixer
+                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 170 0" ></a-entity> 
+            <!-- <a-entity camera ></a-entity>  -->
 
-
-        </a-scene>
-
-        <button class="ar-button" onclick="nextLocationFisch()">➜</button>
+            </a-scene>
+         <button class="ar-button" onclick="nextLocationFisch()">➜</button>
+        
     </div>
 
 
@@ -103,21 +106,25 @@
 
 
 
-    <!-- Screen E: AR View Löwe -->
+    <!-- Screen E: Navigation Instructions Eule -->
+    <div id="screen-e" class="screen">
+        <div class="instruction-box">
+            <h2>📍 Nächstes Ziel</h2>
+            <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
+                Überraschung!</p>
+        </div>
+        <div class="map-container">
+            <img id="map-image" src="" alt="Karte" style="display:none;">
+            <div class="map-placeholder" id="map-placeholder">🗺️ Karte wird geladen...</div>
+        </div>
+        <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
+    </div>
+
+
+    <!-- Screen F: Navigation Instructions Möwe -->
     <div id="screen-f" class="screen">
-        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
-            renderer='antialias: true; alpha: true'>
-
-            <a-assets>
-            </a-assets>
-
-            <!-- <a-camera gps-projected-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
-            <a-entity id="fih1" gltf-model="models/Löwe.glb" animation-mixer position="10 0 0"></a-entity>
-            <!-- <a-entity camera ></a-entity> -->
-
-
-        </a-scene>
-
+       
+        
         <button class="ar-button" onclick="nextLocationLöwe()">➜</button>
     </div>
 
@@ -156,6 +163,7 @@
     </div>
 
 
+        
     <!-- Install Button -->
     <button id="install-btn" class="install-button">📱 Auf Homescreen legen</button>
 
@@ -204,41 +212,57 @@
         }
 
         i = 0;
-        function startAR() {
+        function startAR() 
+         {               
+            showScreen('screen-c');
+            i=i+1;
+            switch (i)
+            {
+                case 1 : 
+                        var el = document.querySelector("#fisch");
+                        el.setAttribute("visible",true);
+                        var el = document.querySelector("#löwe");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#eule");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#möwe");
+                        el.setAttribute("visible",false);
+                break;
+                case 2 :
+                        var el = document.querySelector("#fisch");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#löwe");
+                        el.setAttribute("visible",true);
+                        var el = document.querySelector("#eule");
+                        el.setAttribute("visible",false);  
+                        var el = document.querySelector("#möwe");
+                        el.setAttribute("visible",false);
+                break;
+                case 3 : 
+                        var el = document.querySelector("#fisch");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#löwe");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#eule");
+                        el.setAttribute("visible",true); 
+                        var el = document.querySelector("#möwe");
+                        el.setAttribute("visible",false);
 
-            i = i + 1;
-            switch (i) {
-                case 1: showScreen('screen-c')
-                    break;
-                case 2: showScreen('screen-f')
-                    break;
-                case 3: showScreen('screen-i')
-                    break;
+                break;
+                case 4 : 
+                        var el = document.querySelector("#fisch");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#löwe");
+                        el.setAttribute("visible",false);
+                        var el = document.querySelector("#eule");
+                        el.setAttribute("visible",false); 
+                        var el = document.querySelector("#möwe");
+                        el.setAttribute("visible",true);
+
+                break;
+                
             }
-
-
-
-
         }
-
-        function nextLocationFisch() {
-            // Hier könnten verschiedene Locations rotiert werden
-            showScreen('screen-d');
-        }
-
-
-
-        function nextLocationLöwe() {
-            // Hier könnten verschiedene Locations rotiert werden
-            showScreen('screen-g');
-        }
-
-
-        function nextLocationEule() {
-            // Hier könnten verschiedene Locations rotiert werden
-            showScreen('screen-j');
-        }
-
 
         function startARMaus() {
             showScreen('screen-l');
