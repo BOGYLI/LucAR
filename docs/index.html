@@ -19,7 +19,19 @@
         src='https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js'></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
     <script src="button-component.js"></script>
+    <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <audio src="sounds/Löwe1.m4a" id=11></audio>
+    <audio src="sounds/Möwe.mp3" id=12></audio>
+    <audio src="sounds/Eule.mp3" id=13></audio>
+    <audio src="sounds/Maus.m4a" id=14></audio>
+    <audio src="sounds/Fisch.wav" id=15></audio>
+    <audio src="sounds/Katze1.mp3" id=16></audio>
+    <audio src="sounds/Katze2.mp3" id=17></audio>
+    <audio src="sounds/Löwe2.m4a" id=18></audio>
+  
 </head>
 
 <body>
@@ -36,9 +48,13 @@
         <img src="icons/appicon.jpg">
         <p>Hilf Luca seine Sachen wieder zu finden und begib dich auf eine Reise in die historische Geschichte Lindaus!</p>
         <button class="cta-button" onclick="startApp()">Abenteuer starten</button>
-        <p>Dieses Projekt ist im Rahmen des P-Seminars der 11. Klasse am Bodensee-Gymnasium entstanden. Viele Schüler*innen haben während der Entwicklungszeit ihr Wissen erweitert oder viel Neues gelernt und ausprobiert!</p>
-    </div>
+        <p>Dieses Projekt ist im Raum des Projekt-Seminars der Informatik im Bodensee-Gymnasium entstanden. Hierbei haben viele Studierende ihr Wissen erweitert und vertieft.
 
+        </p>
+    </div>
+    
+   
+    
     <!-- Screen A: Navigation Instructions Fisch -->
     <div id="screen-a" class="screen">
         <div class="instruction-box">
@@ -58,6 +74,8 @@ Jemand wartet dort auf dich!</p>
             <img id="loewenkopf" src="img/Löwenkopf.png" alt="">
             <img id="daumen" src="img/Daumen.png" alt="">
         </div>
+        
+	</a-entity>
         <div class="modal-content">
             <h2>Perfekt!</h2>
             <p>Du bist am Ziel angekommen. Bereit für die AR-Erfahrung?</p>
@@ -65,54 +83,52 @@ Jemand wartet dort auf dich!</p>
         </div>
     </div>
 
+
+
+   
+    
+
+
+
     <!-- Screen C: AR View -->
     <div id="screen-c" class="screen">
+        
         <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
             renderer='antialias: true; alpha: true'>
+            
 
 
             <!-- <a-camera gps-new-camera='gpsMinDistance: 0 positionMinAccuracy: 100 look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' alert:true'></a-camera> -->
             <!-- <a-entity gps-entity-place="latitude: 47.557944; longitude: 9.6974031" id="gps-container"></a-entity>-->
+             
+		
             
-            
-            
-            <a-entity id=1 gltf-model="models/BessererFisch.glb" animation-mixer 
-                position="0 0 -10" rotation="0 0 0"  ></a-entity>
-            <a-entity id=2 gltf-model="models/Löwe.glb" animation-mixer 
-                position="0 0 -10" scale="2 2 2" rotation="0 0 0"  ></a-entity> 
-            <a-entity id=3 gltf-model="models/GartenEule.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 180 0" ></a-entity> 
-            <a-entity id=4 gltf-model="models/Möwe.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 90 0" ></a-entity> 
-            <a-entity id=5 gltf-model="models/Maus.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 360 -10" ></a-entity> 
-            <a-entity id=6 gltf-model="models/Katze.glb" animation-mixer
-                position="0 0 -10"  scale="0.1 0.1 0.1" rotation="0 360 -10" ></a-entity> 
-            <a-entity id=7 gltf-model="models/Hai.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 360 -10" ></a-entity>
-               
+            <a-entity  id=1 gltf-model="models/Löwe.glb" animation-mixer  look-at=KameraView
+                position="0 -0.4 -4.5" rotation="0 0 0" ></a-entity>
+            <a-entity  id=2 gltf-model="models/Möwe.glb" animation-mixer  look-at=KameraView
+                position="0 1.8 -3.5" scale="0.3 0.3 0.3" rotation="10 80 10"  ></a-entity> 
+            <a-entity id=3 gltf-model="models/Eule.glb" animation-mixer  look-at=KameraView
+                position="0 0 -8"  scale="1.6 1.6 1.6" rotation="5 180 -15" ></a-entity>  
+            <a-entity id=4 gltf-model="models/Maus.glb" animation-mixer  look-at=KameraView
+                position="0 -0.15 -8"  scale="1.6 1.6 1.6" rotation="0 0 0" ></a-entity> 
+            <a-entity id=5 gltf-model="models/Fisch.glb" animation-mixer look-at=KameraView
+                position="0 0 -10"  scale="1 1 1" rotation="0 0 -10" ></a-entity> 
+            <a-entity id=6 gltf-model="models/Katze.glb" animation-mixer look-at=KameraView
+                position="0 -1.5 -7"  scale="0.2 0.2 0.2" rotation="0 270 15" ></a-entity> 
+            <a-entity id=7 gltf-model="models/Katze.glb" animation-mixer
+                position="0 -1.5 -7"  scale="0.2 0.2 0.2" rotation="0 270 15" ></a-entity>
+            <a-entity id=8 gltf-model="models/Löwe.glb" animation-mixer
+               position="0 -0.4 -4.5" rotation="0 0 0"  ></a-entity>
 
-            <!-- <a-entity id="fisch" gltf-model="models/BessererFisch.glb" animation-mixer 
-                position="0 0 -10" rotation="0 0 0"  ></a-entity>
-            <a-entity id="löwe" gltf-model="models/Löwe.glb" animation-mixer 
-                position="0 0 -10" scale="2 2 2" rotation="0 0 0"  ></a-entity> 
-            <a-entity id="eule" gltf-model="models/GartenEule.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 180 0" ></a-entity> 
-            <a-entity id="möwe" gltf-model="models/Möwe.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 90 0" ></a-entity> 
-            <a-entity id="maus" gltf-model="models/Maus.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 360 -10" ></a-entity> 
-            <a-entity id="katze" gltf-model="models/Katze.glb" animation-mixer
-                position="0 0 -10"  scale="0.1 0.1 0.1" rotation="0 360 -10" ></a-entity> 
-            <a-entity id="hai" gltf-model="models/Hai.glb" animation-mixer
-                position="0 0 -10"  scale="1.6 1.6 1.6" rotation="0 360 -10" ></a-entity> -->
-            <!-- <a-entity camera ></a-entity>  -->
 
+                 <a-camera id=KameraView gps-camera rotation-reader> </a-camera>
+
+             <canvas id="text-canvas" width="512" height="512"></canvas>
             </a-scene>
-         <button class="ar-button" onclick="nextLocationFisch()">➜</button>
-        
+         
+         
+        <button class="ar-button" onclick="nextLocation()">➜</button>
     </div>
-
 
     <!-- Screen D: Navigation Instructions Löwe -->
     <div id="screen-d" class="screen">
@@ -125,8 +141,6 @@ Jemand wartet dort auf dich!</p>
         </a>
         <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
     </div>
-
-
 
     <!-- Screen E: Navigation Instructions Eule -->
     <div id="screen-e" class="screen">
@@ -141,15 +155,8 @@ Jemand wartet dort auf dich!</p>
     </div>
 
 
-    <!-- Screen F: Navigation Instructions Möwe -->
+     <!-- Screen F: Navigation Instructions Eule -->
     <div id="screen-f" class="screen">
-       
-        
-        <button class="ar-button" onclick="nextLocationLöwe()">➜</button>
-    </div>
-
-    <!-- Screen F: Navigation Instructions Eule -->
-    <div id="screen-g" class="screen">
         <div class="instruction-box">
             <h2>📍 Nächstes Ziel</h2>
             <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
@@ -161,8 +168,7 @@ Jemand wartet dort auf dich!</p>
         <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
     </div>
 
-
-    <!-- Screen G: Navigation Instructions Maus -->
+    <!-- Screen G: Navigation Instructions Möwe -->
     <div id="screen-g" class="screen">
         <div class="instruction-box">
             <h2>📍 Nächstes Ziel</h2>
@@ -189,7 +195,7 @@ Jemand wartet dort auf dich!</p>
         <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
     </div>
 
-            <!-- Screen I: Navigation Instructions Hai -->
+            <!-- Screen I: Navigation Instructions Katze -->
     <div id="screen-i" class="screen">
         <div class="instruction-box">
             <h2>📍 Nächstes Ziel</h2>
@@ -201,6 +207,22 @@ Jemand wartet dort auf dich!</p>
         </a>
         <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
     </div>
+
+
+
+     <!-- Screen J: Navigation Instructions Löwe -->
+    <div id="screen-j" class="screen">
+        <div class="instruction-box">
+            <h2>📍 Nächstes Ziel</h2>
+            <p id="location-instruction">Begib dich zum Haupteingang des Gebäudes. Dort erwartet dich eine besondere
+                Überraschung!</p>
+        </div>
+        <div class="map-container">
+            <img id="map-image" src="" alt="Karte" style="display:none;">
+            <div class="map-placeholder" id="map-placeholder">🗺️ Karte wird geladen...</div>
+        </div>
+        <button class="action-button" onclick="arrivedAtLocation()">Ich bin angekommen</button>
+    </div>
         
     <!-- Install Button -->
     <button id="install-btn" class="install-button">📱 Auf Homescreen legen</button>
@@ -209,6 +231,85 @@ Jemand wartet dort auf dich!</p>
     <div id="sw-update">
         Update verfügbar <button id="sw-reload">Neu laden</button>
     </div>
+    
+    <div id=21 class="subtitle-block">
+            <div class="scrolling-text" >Hi, Ich bin Thomas. <br>
+                Willkommen, hier auf dem Nobelpreisträgersteg.   <br>
+                An keinem Ort der Welt – außer in Stockholm,<br>
+                aber das ignorieren wir einfach<br>
+                 – sind jemals so viele mit dem Nobelpreis<br>
+                 ausgezeichnete Wissenschaftlerinnen und Wissenschaftler <br>
+                 regelmäßig zur gleichen Zeit zusammengetroffen wie in Lindau. <br>
+                 Seit 1951, findet in Lindau eine Nobelpreisträgertagung Stadt, <br>
+                 bei der junge Leute die Chance bekommen Nobelpreisträgern<br>
+                 Fragen zu stellen und sich neues Wissen anzueignen. <br>
+                 Ich kriege ja immer so einiges mit da seit 2019 <br>
+                 dieser Steg zum Andenken an die Nobelpreisträger steht <br>
+                 und dann einige der Besucher der Veranstaltung<br>
+                 beim auf ihm flanieren über Wissenschaft reden. <br>
+                 So kann man die rund 400 Wissenschaftlerinnen<br>
+                 und Wissenschaftler kennenlernen <br>
+                 und sich auf der zugehörigen Internetseite<br>
+                  über die Preisträger und ihre Entdeckungen informieren. <br>
+                 Ich bin ein Riesenfan von Wissenschaft. <br>
+                 Eines Tages will ich auch einen Nobelpreis haben und<br>
+                 meinen Namen in diesen Metalplatten verewigt haben. <br>
+                 Mein Plan ist das Verhalten von Feuer zu untersuchen. <br>
+                 Aber irgendwie kriege ich hier in meinem Haus <br>
+                 am Grunde des Sees kein Feuer hin! <br>
+                 Ich weiß auch nicht, woran das liegt. <br>
+                 Ich habe gehört mit trockenem Holz ginge es besser<br>
+                 aber das Holz hier im See ist irgendwie immer nass! <br>
+                 Es ist wie verhext.<br>
+                Leider gibt es keinen Nobelpreis für Musik,<br>
+                denn den hätte ich bestimmt gewonnen. <br>
+                Ich habe die besten Lieder der Welt geschrieben. <br>
+                Heute morgen habe ich sogar ein himmlisches Zeichen bekommen, <br>
+                das ich die Wissenschaft sein lassen soll <br>
+                und mich der Musik widmen sollte. <br>
+                Eine starke Seepriese hat mir eine Musikbox herbei gefegt. <br>
+                Ich habe mir die genauer angeguckt und da  <br>
+                steht Lucas Name drauf. <br>
+                Wenn ich jetzt zu ihm schwimme, brauche ich eeeeeeewig <br>
+                und es sind soooooo viele Boote noch unterwegs, <br>
+                aber sicher wärt ihr doch so nett sie ihm zu bringen.<br> 
+                Das geht dann bestimmt schneller. 
+            </div>
+        </div>
+
+
+
+        <div id=22 class="subtitle-block">
+            <div class="scrolling-text" >Hi wo <br>
+            </div>
+        </div>
+
+        <div id=23 class="subtitle-block">
+            <div class="scrolling-text" >Hi woo <br>
+            </div>
+        </div>
+
+        <div id=24 class="subtitle-block">
+            <div class="scrolling-text" >Hi wooo <br>
+            </div>
+        </div>
+        
+        <div id=25 class="subtitle-block">
+            <div class="scrolling-text" >Hi woooo <br>
+            </div>
+        </div>
+        
+        <div id=26 class="subtitle-block">
+            <div class="scrolling-text" >Hi wooooo <br>
+            </div>
+        </div>
+        
+        <div id=27 class="subtitle-block">
+            <div class="scrolling-text" >Hi hier! <br>
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA<br>
+            </div>
+        </div>
+    
 
     <script>
 
@@ -242,6 +343,7 @@ Jemand wartet dort auf dich!</p>
         }
 
 
+
         function startApp() {
             showScreen('screen-a');
         }
@@ -252,24 +354,34 @@ Jemand wartet dort auf dich!</p>
         abschnitt = 0;
         
         function startAR() 
-         {               
+        {   
+
             showScreen('screen-c');
+
             abschnitt=abschnitt+1;
 
-            for (var a = 1; a < 8; a++) 
+            for (var a = 1; a < 9; a++) 
             {
                 var el = document.getElementById(a);
                 el.setAttribute("visible",false);
+                
                 
             }
 
             var el = document.getElementById(abschnitt);
             el.setAttribute("visible",true);
+            showSubtitle(document.getElementById(20+abschnitt).innerHTML);
+            var soundEl = document.getElementById(10+abschnitt).play();
+
+
             
         }
-        // FISSION FISH :P
 
-        function nextLocationFisch() {
+        function nextLocation() 
+        {   
+           var soundEl = document.getElementById(10+abschnitt).pause();
+           hideSubtitle();
+
             // Hier könnten verschiedene Locations rotiert werden
             switch(abschnitt)
             {
@@ -285,13 +397,32 @@ Jemand wartet dort auf dich!</p>
                 break;
                 case 6 : showScreen('screen-i')
                 break;
+                case 7 : showScreen('screen-i')
+                break;
             }
+            
         }
 
+        // Subtitle control API
+        function showSubtitle(html) {
+            const block = document.querySelector('.subtitle-block');
+            if (!block) return;
+            const content = block.querySelector('.scrolling-text');
+            if (content) content.innerHTML = html;
+            block.style.display = 'block';
+        }
 
+        function hideSubtitle() {
+            const block = document.querySelector('.subtitle-block');
+            if (!block) return;
+            block.style.display = 'none';
+        }
 
-        function startARMaus() {
-            showScreen('screen-l');
+        function toggleSubtitle() {
+            const block = document.querySelector('.subtitle-block');
+            if (!block) return;
+            const isHidden = getComputedStyle(block).display === 'none';
+            block.style.display = isHidden ? 'block' : 'none';
         }
 
 

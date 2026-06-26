@@ -106,7 +106,7 @@ color: #45a8fa;
 /* Ensure HTML CTA buttons sit above any AR/canvas layers */
 .cta-button {
     position: relative;
-    z-index: 2000;
+    z-index: 20000;
     pointer-events: auto;
 }
 
@@ -297,3 +297,67 @@ color: #45a8fa;
     border-radius: 4px;
     cursor: pointer;
 }
+
+.subtitle-block {
+    position: fixed;
+    display: none;
+    left: 50%;
+    bottom: 500px;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 940px;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 18px 20px 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.subtitle-block .subtitle-caption {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #a8c4ff;
+    margin-bottom: 12px;
+}
+
+.scrolling-text {
+    max-height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    color: #f1f5ff;
+    line-height: 1.5;
+    text-align: left;
+    white-space: normal;
+    position: static;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+    width: 100%;
+}
+
+.scrolling-text::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrolling-text::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+}
+
+.scrolling-text {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+.modelzlayered {
+    z-index: 1100;
+}
+
+
