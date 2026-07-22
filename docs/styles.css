@@ -326,7 +326,7 @@ color: #45a8fa;
 }
 
 .scrolling-text {
-    max-height: 260px;
+    max-height: 130px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 8px;
